@@ -6,7 +6,7 @@ import './Todo.css'
 const TodoList = props =>{ 
     return (
         <div className="todo-list-item-wrapper">
-            <h1> Todo List: MVP</h1>
+          
                 <ul className= "list-item-wrapper">
                         {
                                 props.list.map(todo => {

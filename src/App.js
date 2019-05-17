@@ -57,7 +57,7 @@ addTodoItem = event => {
       todos: this.state.todos.map(todo =>{
           if (id === todo.id){
               return {
-                  ...todo,
+                  ...todo, // here we are saying that we need to return every item that we are mapping over this is the spread operator
                   completed : !todo.completed
               }
           }
@@ -67,21 +67,30 @@ addTodoItem = event => {
     
 }
 
+clearCompleted = event => {
+  event.preventDefault();
+    this.setState({
+        todos:  this.state.todos.filter(todo => !todo.completed)
+    })
+}
+
 
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App! </h2>
-        <TodoList list = {this.state.todos} 
-                  toggleStatus = {this.toggleStatus}
-         />
+          <h1> Todo List:</h1>
         <TodoForm 
             task = {this.state.task}
             id = {this.state.id}
             completed = {this.state.completed}
             changeHandler = {this.changeHandler}
             addTodoItem = {this.addTodoItem} 
+            clearCompleted = {this.clearCompleted}
         />
+         
+         <TodoList list = {this.state.todos} 
+                  toggleStatus = {this.toggleStatus}
+         />
       </div>
     );
   }
