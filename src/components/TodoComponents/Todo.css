@@ -1,3 +1,14 @@
 .list-item-wrapper{
     list-style: none;
 }
+
+.list-item{
+    color:blue;
+    font-weight: 600;
+}
+
+.completed{
+    text-decoration: line-through;
+    color: red;
+}
+

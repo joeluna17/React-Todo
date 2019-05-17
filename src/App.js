@@ -2,6 +2,7 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 
+
 //Object Data Todos'
 const todosData = [
   {
@@ -34,9 +35,7 @@ constructor(){
 changeHandler = event => {
     this.setState({
         [event.target.name] : event.target.value 
-        
     });
-    console.log(this.state) // DELETE ME
 }
 
 addTodoItem = event => {
@@ -50,9 +49,22 @@ addTodoItem = event => {
   this.setState({
       todos: [...this.state.todos, newTodo],
       task:"",
-
   })
+}
 
+  toggleStatus = id => {
+    this.setState({
+      todos: this.state.todos.map(todo =>{
+          if (id === todo.id){
+              return {
+                  ...todo,
+                  completed : !todo.completed
+              }
+          }
+          return todo;
+      })
+  });
+    
 }
 
 
@@ -60,7 +72,9 @@ addTodoItem = event => {
     return (
       <div>
         <h2>Welcome to your Todo App! </h2>
-        <TodoList list = {this.state.todos} />
+        <TodoList list = {this.state.todos} 
+                  toggleStatus = {this.toggleStatus}
+         />
         <TodoForm 
             task = {this.state.task}
             id = {this.state.id}

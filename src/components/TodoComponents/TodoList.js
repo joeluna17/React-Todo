@@ -9,10 +9,13 @@ const TodoList = props =>{
             <h1> Todo List: MVP</h1>
                 <ul className= "list-item-wrapper">
                         {
-                            
-                                props.list.map(todo=>{
-                                return <li className='list-item' key={todo.id}>{todo.task}</li> 
+                                props.list.map(todo => {
+                                return <li className={`list-item ${todo.completed? "completed" : ""}`}
+                                            key={todo.id}
+                                            onClick={() => props.toggleStatus(todo.id)}
+                                        >{todo.task}</li> 
                                 })
+                             
                         }
                 </ul>
         </div>
